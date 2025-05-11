@@ -5,22 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://bpan6axqi6gvt" path="res://Utility/enemy_spawner.tscn" id="3_j8job"]
 [ext_resource type="Script" uid="uid://ckjraei8wd4vh" path="res://Utility/spawn_info.gd" id="4_k8do8"]
 [ext_resource type="PackedScene" uid="uid://dj240r5ro1n3n" path="res://Enemy/enemy.tscn" id="5_bkhv4"]
+[ext_resource type="PackedScene" uid="uid://8khdauejal3c" path="res://Objects/experience_gem.tscn" id="6_bkhv4"]
 
 [sub_resource type="Resource" id="Resource_k8do8"]
 script = ExtResource("4_k8do8")
 time_start = 0
-time_end = 5
+time_end = 20
 enemy = ExtResource("5_bkhv4")
 enemy_num = 1
-enemy_spawn_delay = 0
-metadata/_custom_type_script = "uid://ckjraei8wd4vh"
-
-[sub_resource type="Resource" id="Resource_bkhv4"]
-script = ExtResource("4_k8do8")
-time_start = 5
-time_end = 60
-enemy = ExtResource("5_bkhv4")
-enemy_num = 10
 enemy_spawn_delay = 0
 metadata/_custom_type_script = "uid://ckjraei8wd4vh"
 
@@ -39,4 +31,10 @@ region_filter_clip_enabled = true
 [node name="Player" parent="." instance=ExtResource("2_8a836")]
 
 [node name="EnemySpawner" parent="." instance=ExtResource("3_j8job")]
-spawns = Array[ExtResource("4_k8do8")]([SubResource("Resource_k8do8"), SubResource("Resource_bkhv4")])
+spawns = Array[ExtResource("4_k8do8")]([SubResource("Resource_k8do8")])
+
+[node name="Loot" type="Node2D" parent="." groups=["loot"]]
+
+[node name="ExperienceGem" parent="." instance=ExtResource("6_bkhv4")]
+position = Vector2(79, -16)
+experience = 500

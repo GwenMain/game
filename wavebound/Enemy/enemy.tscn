@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dj240r5ro1n3n"]
+[gd_scene load_steps=12 format=3 uid="uid://dj240r5ro1n3n"]
 
 [ext_resource type="Script" uid="uid://ga5g14guni8r" path="res://Enemy/enemy.gd" id="1_px1sc"]
 [ext_resource type="Texture2D" uid="uid://dbfac0aw7rrwe" path="res://Textures/Enemy/swamp_monster.png" id="2_px1sc"]
 [ext_resource type="PackedScene" uid="uid://dnyhk5exewoo3" path="res://Utility/hurt_box.tscn" id="3_am0pq"]
 [ext_resource type="PackedScene" uid="uid://bfxmgwvxxw0a7" path="res://Utility/hit_box.tscn" id="4_eqilm"]
+[ext_resource type="AudioStream" uid="uid://by8tnr1bm4b8c" path="res://Audio/SoundEffect/enemy_hit.ogg" id="5_ncf7h"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_px1sc"]
 radius = 3.0
@@ -54,6 +55,8 @@ size = Vector2(14, 22)
 size = Vector2(10, 18)
 
 [node name="enemy_werewolf" type="CharacterBody2D"]
+collision_layer = 5
+collision_mask = 5
 motion_mode = 1
 script = ExtResource("1_px1sc")
 
@@ -64,6 +67,7 @@ texture = ExtResource("2_px1sc")
 hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(2, 7)
 shape = SubResource("CapsuleShape2D_px1sc")
 
@@ -74,19 +78,25 @@ libraries = {
 
 [node name="HurtBox" parent="." instance=ExtResource("3_am0pq")]
 visible = false
-collision_layer = 4
 collision_mask = 4
+HurtBoxType = 1
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(1, 6)
 shape = SubResource("RectangleShape2D_am0pq")
 
 [node name="HitBox" parent="." instance=ExtResource("4_eqilm")]
-collision_layer = 4
+visible = false
+collision_layer = 2
+collision_mask = 4
 
 [node name="CollisionShape2D" parent="HitBox" index="0"]
 position = Vector2(2, 7)
 shape = SubResource("RectangleShape2D_ncf7h")
+
+[node name="snd_hit" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ncf7h")
+volume_db = -35.0
 
 [connection signal="hurt" from="HurtBox" to="." method="_on_hurt_box_hurt"]
 
