@@ -10,9 +10,9 @@
 [sub_resource type="Resource" id="Resource_k8do8"]
 script = ExtResource("4_k8do8")
 time_start = 0
-time_end = 20
+time_end = 60
 enemy = ExtResource("5_bkhv4")
-enemy_num = 1
+enemy_num = 5
 enemy_spawn_delay = 0
 metadata/_custom_type_script = "uid://ckjraei8wd4vh"
 
